@@ -1,0 +1,13 @@
+file type image:
+[
+point A at (0, 0) label "Origin"
+point B at (120, 0) label "Base"
+point C at (120, 90) label "Apex"
+line from A to B
+line from B to C
+line from C to A
+triangle ABC with color "amber" & show angles
+circle at A radius 40 & dash
+]
+
+render image

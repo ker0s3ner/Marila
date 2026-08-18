@@ -1,0 +1,6 @@
+file type video:
+[ 
+ square(size 30) morphs to circle(size 10)
+]
+
+render video

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marila Studio — Math, Motion & Diagram Language</title>
+  <meta name="description" content="Marila DSL Studio for mathematical document typesetting, Manim-like animations, and TikZ-like Euclidean diagrams.">
+  
+  <!-- Fonts: Inter & JetBrains Mono / Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=KaTeX_Main:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+  <!-- Top App Navigation Header -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo-icon"><i data-lucide="sigma"></i></div>
+      <div class="logo-text">
+        <h1>Marila <span>Studio</span></h1>
+        <span class="badge">v1.0 Basic Math DSL</span>
+      </div>
+    </div>
+
+    <!-- Presets / Quick Loader -->
+    <div class="header-controls">
+      <div class="preset-selector">
+        <label for="exampleSelect"><i data-lucide="book-open"></i> Example Presets:</label>
+        <select id="exampleSelect">
+          <option value="video_morph">Video: Square Morphs to Circle</option>
+          <option value="video_calculus">Video: Integration & Sine Wave</option>
+          <option value="doc_euclid">Document: Euclidean Geometry Paper</option>
+          <option value="doc_calculus">Document: Calculus & Limits</option>
+          <option value="image_triangle">Image: Pythagorean Right Triangle</option>
+          <option value="image_circle_tangent">Image: Inscribed Circle & Tangents</option>
+        </select>
+      </div>
+
+      <button id="runBtn" class="btn primary-btn"><i data-lucide="play"></i> Render (Ctrl+Enter)</button>
+      <button id="exportBtn" class="btn secondary-btn"><i data-lucide="download"></i> Export Output</button>
+    </div>
+  </header>
+
+  <!-- Main IDE Workspace Split View -->
+  <main class="ide-container">
+    
+    <!-- Left Pane: Code Editor -->
+    <section class="pane editor-pane">
+      <div class="pane-header">
+        <div class="tab active"><i data-lucide="code-2"></i> Marila Source (<span id="activeFileType">video</span>)</div>
+        <div class="pane-actions">
+          <button id="clearBtn" title="Clear Editor" class="icon-btn"><i data-lucide="trash-2"></i></button>
+          <button id="copyBtn" title="Copy Code" class="icon-btn"><i data-lucide="copy"></i></button>
+        </div>
+      </div>
+      
+      <div class="editor-wrapper">
+        <div class="line-numbers" id="lineNumbers">1</div>
+        <textarea id="codeEditor" spellcheck="false" placeholder="file type video:&#10;[&#10;  square(size 30) morphs to circle(size 10)&#10;]&#10;render video"></textarea>
+      </div>
+
+      <div class="console-drawer" id="consoleDrawer">
+        <div class="console-header">
+          <span><i data-lucide="terminal"></i> Marila Engine Log</span>
+          <span id="logStatus" class="status-ok">Ready</span>
+        </div>
+        <div class="console-body" id="consoleOutput">Marila engine initialized successfully. Ready to compile.</div>
+      </div>
+    </section>
+
+    <!-- Right Pane: Live Renderer Preview -->
+    <section class="pane preview-pane">
+      <div class="pane-header">
+        <div class="tab-group" id="previewTabs">
+          <button class="tab-btn active" data-type="video"><i data-lucide="film"></i> Video View</button>
+          <button class="tab-btn" data-type="document"><i data-lucide="file-text"></i> Document View</button>
+          <button class="tab-btn" data-type="image"><i data-lucide="image"></i> Image (TikZ) View</button>
+        </div>
+
+        <div class="view-controls" id="viewControls">
+          <!-- Populated dynamically per mode -->
+        </div>
+      </div>
+
+      <div class="preview-viewport" id="viewport">
+        
+        <!-- Video Canvas View -->
+        <div class="renderer-container video-mode active" id="videoContainer">
+          <div class="canvas-wrapper">
+            <canvas id="videoCanvas" width="900" height="500"></canvas>
+            <div class="canvas-overlay" id="canvasOverlay"></div>
+          </div>
+          <div class="video-timeline-bar">
+            <button id="playPauseBtn" class="timeline-btn"><i data-lucide="play"></i></button>
+            <input type="range" id="timeScrubber" min="0" max="100" value="0" step="0.1">
+            <span id="timeDisplay" class="time-readout">00:00 / 00:04</span>
+            <button id="loopBtn" class="timeline-btn active" title="Toggle Loop"><i data-lucide="repeat"></i></button>
+          </div>
+        </div>
+
+        <!-- Document Viewer -->
+        <div class="renderer-container document-mode" id="documentContainer">
+          <div class="paper-page" id="documentPaper">
+            <!-- Dynamic HTML rendered from document AST -->
+          </div>
+        </div>
+
+        <!-- Image Diagram Viewer -->
+        <div class="renderer-container image-mode" id="imageContainer">
+          <div class="svg-wrapper" id="svgWrapper">
+            <svg id="imageSvg" viewBox="-250 -200 500 400" preserveAspectRatio="xMidYMid meet">
+              <!-- SVG Euclidean elements rendered here -->
+            </svg>
+          </div>
+          <div class="diagram-toolbar">
+            <button id="gridToggleBtn" class="btn tool-btn active"><i data-lucide="grid"></i> Grid</button>
+            <button id="zoomInBtn" class="btn tool-btn"><i data-lucide="zoom-in"></i> Zoom In</button>
+            <button id="zoomOutBtn" class="btn tool-btn"><i data-lucide="zoom-out"></i> Zoom Out</button>
+            <button id="resetViewBtn" class="btn tool-btn"><i data-lucide="refresh-cw"></i> Reset</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Syntax Reference Footer Modal -->
+  <footer class="app-footer">
+    <div class="footer-info">
+      <span><i data-lucide="code"></i> Syntax quick reference:</span>
+      <code>file type &lt;type&gt;: [ ... ] render &lt;type&gt;</code> | 
+      <code>p1 - "Title" :: Subtitle</code> | 
+      <code>&lt;integral |0||1|| x^2 dx&gt;</code> | 
+      <code>square(size 30) morphs to circle(size 10)</code> | 
+      <code>point A at (x, y)</code>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/lexer.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/evaluator.js"></script>
+  <script src="js/documentRenderer.js"></script>
+  <script src="js/videoRenderer.js"></script>
+  <script src="js/imageRenderer.js"></script>
+  <script src="js/examples.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

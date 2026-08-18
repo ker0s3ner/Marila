@@ -1,0 +1,10 @@
+file type document:
+[
+p1 - "What is Euclidean Geometry?" :: By Benas Petronis 
+
+p2 - "We define integration over space as <integral |0||1|| x^2 dx> which measures area under parabolic curves."
+
+theorem1 - "Pythagorean Theorem" :: "In any right triangle <a^2 + b^2 = c^2> holds true."
+]
+
+render document
