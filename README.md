@@ -4,7 +4,7 @@
 
 ---
 
-## 🌟 Language Syntax Overview
+##  Language Syntax Overview
 
 Marila uses concise symbol syntax involving `:: / \ ^ {} [] <> , . () & $ | ^ !` and simple keyword blocks similar to BASIC.
 
@@ -58,7 +58,7 @@ render image
 
 ---
 
-## 🚀 Usage CLI Commands
+##  Usage CLI Commands
 
 Execute Marila `.marila` scripts using Python:
 
