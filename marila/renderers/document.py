@@ -3,6 +3,7 @@ Marila Document Renderer (Python)
 Compiles document AST nodes into typeset LaTeX / HTML documents.
 """
 
+import html
 import re
 from marila.ast_nodes import DocumentNode
 
@@ -15,19 +16,28 @@ class DocumentCompiler:
         for stmt in self.program.statements:
             if isinstance(stmt, DocumentNode):
                 formatted_text = self.format_math(stmt.text)
+                formatted_text = html.escape(formatted_text, quote=False)
+                subtitle = html.escape(stmt.subtitle or "", quote=False)
                 if stmt.subtitle:
                     html_nodes.append(f"""
                     <div class="doc-header">
                         <h1>{formatted_text}</h1>
-                        <p class="subtitle">{stmt.subtitle}</p>
+                        <p class="subtitle">{subtitle}</p>
                     </div>
                     """)
-                elif stmt.node_id.startswith("theorem"):
+                elif stmt.node_id.startswith(("theorem", "definition", "def", "proof", "proposition", "prop")):
+                    kind = "theorem-box"
+                    if stmt.node_id.startswith(("definition", "def")):
+                        kind = "definition-box"
+                    elif stmt.node_id.startswith("proof"):
+                        kind = "proof-box"
                     html_nodes.append(f"""
-                    <div class="theorem-box">
-                        <h3>{stmt.node_id.capitalize()}: {stmt.text}</h3>
+                    <div class="{kind}">
+                        <h3>{html.escape(stmt.node_id.capitalize())}: {formatted_text}</h3>
                     </div>
                     """)
+                elif stmt.node_id.startswith(("eq", "equation")):
+                    html_nodes.append(f'<div class="equation">{formatted_text}</div>')
                 else:
                     html_nodes.append(f'<p class="paragraph">{formatted_text}</p>')
 
@@ -45,7 +55,10 @@ class DocumentCompiler:
         body {{ font-family: 'Times New Roman', serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; background: #fff; color: #111; }}
         h1 {{ border-bottom: 2px solid #333; padding-bottom: 8px; }}
         .subtitle {{ font-style: italic; color: #555; margin-bottom: 30px; }}
-        .theorem-box {{ background: #f4f4f9; border-left: 4px solid #6366f1; padding: 15px; margin: 20px 0; }}
+        .theorem-box, .definition-box, .proof-box {{ background: #f4f4f9; border-left: 4px solid #6366f1; padding: 15px; margin: 20px 0; }}
+        .definition-box {{ border-left-color: #10b981; }}
+        .proof-box {{ border-left-color: #f59e0b; }}
+        .equation {{ text-align: center; margin: 20px 0; padding: 12px; background: #f8fafc; }}
         .paragraph {{ margin: 15px 0; text-align: justify; }}
     </style>
 </head>

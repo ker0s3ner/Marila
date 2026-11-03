@@ -1,0 +1,12 @@
+file type program:
+[
+  let samples = linspace(0, 6.28, 5)
+  let wave = x => sin(x)
+  for sample in samples {
+    print wave(sample)
+  }
+
+  let left = [[1, 2], [3, 4]]
+  let right = [[2, 0], [1, 2]]
+  print left * right
+]

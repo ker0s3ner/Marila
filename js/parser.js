@@ -176,7 +176,18 @@ class Parser {
     }
 
     // Check plot or function statement
-    if (this.match(TokenType.KEYWORD, 'plot') || this.match(TokenType.KEYWORD, 'draw')) {
+    let plotDimensions = 2;
+    let plotCommand = null;
+    if (this.match(TokenType.KEYWORD, 'plot4d')) {
+      plotCommand = 'plot4d'; plotDimensions = 4;
+    } else if (this.match(TokenType.KEYWORD, 'plot3d')) {
+      plotCommand = 'plot3d'; plotDimensions = 3;
+    } else if (this.match(TokenType.KEYWORD, 'plot2d')) {
+      plotCommand = 'plot2d';
+    } else if (this.match(TokenType.KEYWORD, 'plot') || this.match(TokenType.KEYWORD, 'draw')) {
+      plotCommand = 'plot';
+    }
+    if (plotCommand) {
       let funcExpr = '';
       while (this.peek() && this.peek().value !== ']' && this.peek().value !== '&' && this.peek().type !== TokenType.EOF) {
         funcExpr += (funcExpr ? ' ' : '') + this.advance().value;
@@ -194,7 +205,8 @@ class Parser {
       return {
         kind: 'PlotAnimation',
         expression: funcExpr || 'x^2',
-        animateTrace: animateTrace
+        animateTrace: animateTrace,
+        dimensions: plotDimensions
       };
     }
 

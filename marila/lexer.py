@@ -1,16 +1,22 @@
-"""
-Marila Programming Language - Lexical Analyzer
-"""
+"""Lexer for Marila source code."""
 
-from marila.tokens import Token, TokenType, KEYWORDS
+from marila.tokens import KEYWORDS, Token, TokenType
+
 
 class LexerError(Exception):
     def __init__(self, message: str, line: int, col: int):
-        super().__init__(f"LexerError at Line {line}, Col {col}: {message}")
+        super().__init__(f"LexerError at line {line}, column {col}: {message}")
         self.line = line
         self.col = col
 
+
 class Lexer:
+    _operators = {
+        "+", "-", "*", "/", "%", "^", "=", "==", "!=", "<", "<=", ">",
+        ">=", "->", "=>", "::", "&&", "||", "!", "&", "@", ".*", "./", ".^",
+    }
+    _symbols = {"(", ")", "[", "]", "{", "}", ",", ":", ";", "."}
+
     def __init__(self, source: str):
         self.source = source
         self.pos = 0
@@ -18,130 +24,98 @@ class Lexer:
         self.col = 1
 
     def peek(self, offset: int = 0) -> str:
-        idx = self.pos + offset
-        return self.source[idx] if idx < len(self.source) else ''
+        index = self.pos + offset
+        return self.source[index] if index < len(self.source) else ""
 
-    def advance(() -> str:
-        ch = self.peek()
+    def advance(self) -> str:
+        char = self.peek()
+        if not char:
+            return ""
         self.pos += 1
-        if ch == '\n':
+        if char == "\n":
             self.line += 1
             self.col = 1
         else:
             self.col += 1
-        return ch
+        return char
 
-    def tokenize(list[Token]):
-        tokens = []
-
+    def tokenize(self) -> list[Token]:
+        tokens: list[Token] = []
         while self.pos < len(self.source):
-            ch = self.peek()
-
-            # Skip whitespace
-            if ch.isspace():
+            char = self.peek()
+            if char in " \t\r":
                 self.advance()
                 continue
-
-            # Skip comments (# or //)
-            if ch == '#' or (ch == '/' and self.peek(1) == '/'):
-                while self.peek() and self.peek() != '\n':
+            if char == "\n":
+                tokens.append(Token(TokenType.NEWLINE, "\n", self.line, self.col))
+                self.advance()
+                continue
+            if char == "#" or (char == "/" and self.peek(1) == "/"):
+                while self.peek() and self.peek() != "\n":
                     self.advance()
                 continue
+            if char in "\"'":
+                tokens.append(self._read_string(char))
+                continue
+            if char.isdigit() or (char == "." and self.peek(1).isdigit()):
+                tokens.append(self._read_number())
+                continue
+            if char.isalpha() or char == "_":
+                tokens.append(self._read_identifier())
+                continue
 
-            # Double colon ::
-            if ch == ':' and self.peek(1) == ':':
-                line, col = self.line, self.col
+            line, col = self.line, self.col
+            pair = char + self.peek(1)
+            if pair in self._operators:
                 self.advance()
                 self.advance()
-                tokens.append(Token(TokenType.DOUBLE_COLON, '::', line, col))
+                tokens.append(Token(TokenType.OPERATOR, pair, line, col))
                 continue
-
-            # String literal ("..." or '...')
-            if ch in ('"', "'"):
-                tokens.append(self.read_string(ch))
+            if char in self._operators:
+                self.advance()
+                tokens.append(Token(TokenType.OPERATOR, char, line, col))
                 continue
-
-            # Numbers
-            if ch.isdigit() or (ch == '-' and self.peek(1).isdigit()):
-                tokens.append(self.read_number())
+            if char in self._symbols:
+                self.advance()
+                tokens.append(Token(TokenType.SYMBOL, char, line, col))
                 continue
+            raise LexerError(f"unexpected character {char!r}", line, col)
 
-            # Identifiers & Keywords
-            if ch.isalpha() or ch == '_':
-                tokens.append(self.read_identifier())
-                continue
-
-            # Symbols: :: / \ ^ {} [] <> , . () & $ | ^ ! - + * = :
-            symbol_map = {
-                '/': TokenType.SLASH,
-                '\\': TokenType.BACKSLASH,
-                '^': TokenType.CARET,
-                '{': TokenType.LBRACE,
-                '}': TokenType.RBRACE,
-                '[': TokenType.LBRACKET,
-                ']': TokenType.RBRACKET,
-                '<': TokenType.LANGLE,
-                '>': TokenType.RANGLE,
-                ',': TokenType.COMMA,
-                '.': TokenType.DOT,
-                '(': TokenType.LPAREN,
-                ')': TokenType.RPAREN,
-                '&': TokenType.AMPERSAND,
-                '$': TokenType.DOLLAR,
-                '|': TokenType.PIPE,
-                '!': TokenType.EXCLAMATION,
-                '-': TokenType.MINUS,
-                '+': TokenType.PLUS,
-                '*': TokenType.STAR,
-                '=': TokenType.EQUALS,
-                ':': TokenType.COLON,
-            }
-
-            if ch in symbol_map:
-                line, col = self.line, self.col
-                val = self.advance()
-                tokens.append(Token(symbol_map[ch], val, line, col))
-                continue
-
-            raise LexerError(f"Unexpected character '{ch}'", self.line, self.col)
-
-        tokens.append(Token(TokenType.EOF, '', self.line, self.col))
+        tokens.append(Token(TokenType.EOF, "", self.line, self.col))
         return tokens
 
-    def read_string(quote_char: str) -> Token:
-        start_line, start_col = self.line, self.col
-        self.advance() # consume quote
-        str_val = ''
-        while self.peek() and self.peek() != quote_char:
-            if self.peek() == '\\':
+    def _read_string(self, quote: str) -> Token:
+        line, col = self.line, self.col
+        self.advance()
+        value: list[str] = []
+        while self.peek() and self.peek() != quote:
+            if self.peek() == "\\":
                 self.advance()
                 escaped = self.advance()
-                if escaped == 'n': str_val += '\n'
-                elif escaped == 't': str_val += '\t'
-                else: str_val += escaped
+                value.append({"n": "\n", "t": "\t", "r": "\r"}.get(escaped, escaped))
             else:
-                str_val += self.advance()
-        if self.peek() == quote_char:
-            self.advance()
-        return Token(TokenType.STRING, str_val, start_line, start_col)
+                value.append(self.advance())
+        if not self.peek():
+            raise LexerError("unterminated string literal", line, col)
+        self.advance()
+        return Token(TokenType.STRING, "".join(value), line, col)
 
-    def read_number() -> Token:
-        start_line, start_col = self.line, self.col
-        num_str = ''
-        if self.peek() == '-':
-            num_str += self.advance()
-        while self.peek().isdigit():
-            num_str += self.advance()
-        if self.peek() == '.' and self.peek(1).isdigit():
-            num_str += self.advance()
-            while self.peek().isdigit():
-                num_str += self.advance()
-        return Token(TokenType.NUMBER, num_str, start_line, start_col)
+    def _read_number(self) -> Token:
+        line, col = self.line, self.col
+        text: list[str] = []
+        while self.peek().isdigit() or self.peek() == ".":
+            text.append(self.advance())
+        raw = "".join(text)
+        if raw.count(".") > 1:
+            raise LexerError(f"invalid number {raw!r}", line, col)
+        value = float(raw) if "." in raw else int(raw)
+        return Token(TokenType.NUMBER, value, line, col)
 
-    def read_identifier() -> Token:
-        start_line, start_col = self.line, self.col
-        id_str = ''
-        while self.peek().isalnum() or self.peek() == '_':
-            id_str += self.advance()
-        type_ = TokenType.KEYWORD if id_str.lower() in KEYWORDS else TokenType.IDENTIFIER
-        return Token(type_, id_str, start_line, start_col)
+    def _read_identifier(self) -> Token:
+        line, col = self.line, self.col
+        text: list[str] = []
+        while self.peek().isalnum() or self.peek() == "_":
+            text.append(self.advance())
+        value = "".join(text)
+        token_type = TokenType.KEYWORD if value.lower() in KEYWORDS else TokenType.IDENTIFIER
+        return Token(token_type, value, line, col)

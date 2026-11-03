@@ -234,7 +234,7 @@ class VideoRenderer {
       ctx.textAlign = 'center';
       const labelText = t < 0.5 ? 'Square' : 'Circle';
       ctx.fillText(`Shape: ${labelText} (${(t * 100).toFixed(0)}% Morph)`, cx, cy + 140);
-    } else if (anim.type === 'plot') {
+    } else if (anim.type === 'plot' && (anim.dimensions || 2) === 2) {
       // Function Plot Animation
       const t = progress;
       ctx.beginPath();
@@ -278,7 +278,66 @@ class VideoRenderer {
       ctx.shadowBlur = 20;
       ctx.fill();
       ctx.shadowBlur = 0;
+    } else if (anim.type === 'plot' && anim.dimensions === 3) {
+      this.render3DSurface(ctx, anim, progress, cx, cy);
+    } else if (anim.type === 'plot' && anim.dimensions === 4) {
+      this.render4DHypercube(ctx, progress, cx, cy);
     }
+  }
+
+  evaluateSurface(expression, x, y) {
+    if (expression.includes('x^2') && !expression.includes('y')) return (x * x) / 10 - 2;
+    if (expression.includes('sin') && expression.includes('cos')) return Math.sin(x) * Math.cos(y);
+    return Math.sin(x) * Math.cos(y);
+  }
+
+  project3D(x, y, z, cx, cy) {
+    const yaw = performance.now() / 4000;
+    const xr = x * Math.cos(yaw) - z * Math.sin(yaw);
+    const zr = x * Math.sin(yaw) + z * Math.cos(yaw);
+    const depth = 1 + zr / 18;
+    return [cx + xr * 25 / depth, cy - y * 25 / depth];
+  }
+
+  render3DSurface(ctx, anim, progress, cx, cy) {
+    const range = 4;
+    const step = 0.4;
+    for (let x = -range; x < range; x += step) {
+      for (let y = -range; y < range; y += step) {
+        const p1 = this.project3D(x, this.evaluateSurface(anim.expression, x, y), y, cx, cy);
+        const p2 = this.project3D(x + step, this.evaluateSurface(anim.expression, x + step, y), y, cx, cy);
+        const p3 = this.project3D(x, this.evaluateSurface(anim.expression, x, y + step), y + step, cx, cy);
+        ctx.strokeStyle = 'rgba(16, 185, 129, 0.7)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(...p1); ctx.lineTo(...p2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(...p1); ctx.lineTo(...p3); ctx.stroke();
+      }
+    }
+  }
+
+  render4DHypercube(ctx, progress, cx, cy) {
+    const vertices = Array.from({ length: 16 }, (_, index) => [
+      index & 1 ? 1 : -1, index & 2 ? 1 : -1,
+      index & 4 ? 1 : -1, index & 8 ? 1 : -1
+    ]);
+    const projected = vertices.map(point => {
+      const angle = performance.now() / 3000;
+      const x = point[0] * Math.cos(angle) - point[3] * Math.sin(angle);
+      const w = point[0] * Math.sin(angle) + point[3] * Math.cos(angle);
+      const depth = 1 / (4.5 - w);
+      return this.project3D(x * depth, point[1] * depth, point[2] * depth, cx, cy);
+    });
+    ctx.strokeStyle = '#a855f7';
+    ctx.lineWidth = 2;
+    vertices.forEach((_, index) => {
+      [1, 2, 4, 8].forEach(bit => {
+        const other = index ^ bit;
+        if (index < other) {
+          ctx.beginPath(); ctx.moveTo(...projected[index]);
+          ctx.lineTo(...projected[other]); ctx.stroke();
+        }
+      });
+    });
   }
 
   easeInOutCubic(t) {

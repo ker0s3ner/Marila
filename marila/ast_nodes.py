@@ -1,53 +1,171 @@
-"""
-Marila Programming Language - AST Node Definitions
-"""
+"""AST nodes shared by the Marila compiler and runtime."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Any
+
 
 class ASTNode:
     pass
 
+
+@dataclass
 class ProgramNode(ASTNode):
-    def __init__(self, file_type: str, statements: list, render_target: str = None):
-        self.file_type = file_type # 'video', 'document', or 'image'
-        self.statements = statements
-        self.render_target = render_target
+    file_type: str
+    statements: list[ASTNode]
+    render_target: str | None = None
 
+
+@dataclass
+class LiteralNode(ASTNode):
+    value: Any
+
+
+@dataclass
+class IdentifierNode(ASTNode):
+    name: str
+
+
+@dataclass
+class ListNode(ASTNode):
+    items: list[ASTNode]
+
+
+@dataclass
+class UnaryNode(ASTNode):
+    operator: str
+    operand: ASTNode
+
+
+@dataclass
+class BinaryNode(ASTNode):
+    left: ASTNode
+    operator: str
+    right: ASTNode
+
+
+@dataclass
+class CallNode(ASTNode):
+    callee: ASTNode
+    arguments: list[ASTNode]
+
+
+@dataclass
+class IndexNode(ASTNode):
+    collection: ASTNode
+    index: ASTNode
+
+
+@dataclass
+class LambdaNode(ASTNode):
+    parameters: list[str]
+    body: ASTNode
+
+
+@dataclass
+class VariableNode(ASTNode):
+    name: str
+    value: ASTNode
+
+
+@dataclass
+class AssignmentNode(ASTNode):
+    name: str
+    value: ASTNode
+
+
+@dataclass
+class BlockNode(ASTNode):
+    statements: list[ASTNode]
+
+
+@dataclass
+class IfNode(ASTNode):
+    condition: ASTNode
+    then_branch: BlockNode
+    else_branch: BlockNode | None = None
+
+
+@dataclass
+class WhileNode(ASTNode):
+    condition: ASTNode
+    body: BlockNode
+
+
+@dataclass
+class ForNode(ASTNode):
+    name: str
+    iterable: ASTNode
+    body: BlockNode
+
+
+@dataclass
+class ImportNode(ASTNode):
+    module: str
+
+
+@dataclass
+class FunctionNode(ASTNode):
+    name: str
+    parameters: list[str]
+    body: BlockNode
+
+
+@dataclass
+class ReturnNode(ASTNode):
+    value: ASTNode | None = None
+
+
+@dataclass
+class PrintNode(ASTNode):
+    value: ASTNode
+
+
+@dataclass
 class DocumentNode(ASTNode):
-    def __init__(self, node_id: str, text: str, subtitle: str = None):
-        self.node_id = node_id
-        self.text = text
-        self.subtitle = subtitle
+    node_id: str
+    text: str
+    subtitle: str | None = None
 
+
+@dataclass
 class MorphNode(ASTNode):
-    def __init__(self, from_shape: dict, to_shape: dict, duration: str = "3s"):
-        self.from_shape = from_shape
-        self.to_shape = to_shape
-        self.duration = duration
+    from_shape: dict
+    to_shape: dict
+    duration: str = "3s"
 
+
+@dataclass
 class PlotNode(ASTNode):
-    def __init__(self, expression: str, animate_trace: bool = True):
-        self.expression = expression
-        self.animate_trace = animate_trace
+    expression: str
+    animate_trace: bool = True
+    dimensions: int = 2
 
+
+@dataclass
 class PointNode(ASTNode):
-    def __init__(self, point_id: str, x: float, y: float, label: str = None):
-        self.point_id = point_id
-        self.x = x
-        self.y = y
-        self.label = label or point_id
+    point_id: str
+    x: float
+    y: float
+    label: str | None = None
 
+
+@dataclass
 class LineNode(ASTNode):
-    def __init__(self, from_id: str, to_id: str):
-        self.from_id = from_id
-        self.to_id = to_id
+    from_id: str
+    to_id: str
 
+
+@dataclass
 class TriangleNode(ASTNode):
-    def __init__(self, point_ids: list, color: str = "amber", show_angles: bool = True):
-        self.point_ids = point_ids
-        self.color = color
-        self.show_angles = show_angles
+    point_ids: list[str]
+    color: str = "amber"
+    show_angles: bool = True
 
+
+@dataclass
 class CircleNode(ASTNode):
-    def __init__(self, center_id: str, radius: float = 50.0, dash: bool = False):
-        self.center_id = center_id
-        self.radius = radius
-        self.dash = dash
+    center_id: str
+    radius: float = 50.0
+    dash: bool = False

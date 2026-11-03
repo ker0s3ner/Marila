@@ -1,0 +1,7 @@
+file type scene:
+[
+plot2d sin(x) & animate trace
+plot3d sin(x) * cos(y)
+plot4d tesseract
+]
+render scene

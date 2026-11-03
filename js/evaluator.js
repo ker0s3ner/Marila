@@ -98,6 +98,7 @@ class Evaluator {
           type: 'plot',
           expression: stmt.expression,
           animateTrace: stmt.animateTrace,
+          dimensions: stmt.dimensions || 2,
           duration: 4
         });
       } else if (stmt.kind === 'StaticShape') {

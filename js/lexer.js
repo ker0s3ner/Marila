@@ -15,7 +15,7 @@ const TokenType = {
 
 const KEYWORDS = new Set([
   'file', 'type', 'video', 'document', 'image', 'render',
-  'morphs', 'to', 'over', 'draw', 'plot', 'point', 'line',
+  'morphs', 'to', 'over', 'draw', 'plot', 'plot2d', 'plot3d', 'plot4d', 'point', 'line',
   'segment', 'circle', 'square', 'triangle', 'polygon', 'ellipse',
   'axes', 'function', 'label', 'theorem', 'with', 'radius', 'size',
   'color', 'at', 'from', 'fill', 'stroke', 'dash', 'show', 'angles'
