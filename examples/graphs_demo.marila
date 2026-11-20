@@ -1,7 +1,15 @@
 file type scene:
 [
-plot2d sin(x) & animate trace
+plot2d sin(x) over x in [-pi, pi] & animate trace
+plot2d exp(x) over x in [-2, 2]
+plot2d parametric (cos(t), sin(t)) over t in [0, 6.28]
+plot2d polar (1 + cos(t)) over t in [0, 2*pi]
+plot2d implicit x^2 + y^2 - 1 over x, y in [-2, 2]
 plot3d sin(x) * cos(y)
+plot2d asin(x) over x in [-1, 1] & title "Inverse sine" & color "red"
+plot2d log10(x) over x in [1, 100] & title "Base-10 logarithm"
+plot2d atan(x) over x in [-3, 3] & title "Inverse tangent" & color "orange"
+plot2d vectorfield (-y, x) over x, y in [-3, 3] & title "Rotation field" & color "cyan"
 plot4d tesseract
 ]
 render scene

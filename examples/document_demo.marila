@@ -5,6 +5,15 @@ p1 - "What is Euclidean Geometry?" :: By Benas Petronis
 p2 - "We define integration over space as <integral |0||1|| x^2 dx> which measures area under parabolic curves."
 
 theorem1 - "Pythagorean Theorem" :: "In any right triangle <a^2 + b^2 = c^2> holds true."
+equation1 - "E = mc^2"
+bullet1 - "Points, lines, and curves share one visual model."
+bullet2 - "The same source can become HTML, LaTeX, or SVG."
+code1 - "let answer = integrate(x => x^2, 0, 1)"
+table1 - "| Quantity | Value |\n| --- | --- |\n| Area | 0.333 |\n| Dimension | 2 |"
+point DiagramOrigin at (0, 0) label "Diagram origin"
+point DiagramBase at (120, 0) label "Diagram base"
+line from DiagramOrigin to DiagramBase
+plot2d cos(x) over x in [-3.14, 3.14] & color "cyan"
 ]
 
 render document
