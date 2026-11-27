@@ -1,0 +1,5 @@
+file type program:
+[
+let solution = root(x => x^2 - 2, [0, 2])
+assert(abs(solution - sqrt(2)) < 1e-6)
+]

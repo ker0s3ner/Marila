@@ -1,6 +1,10 @@
 file type document:
 [
 p1 - "What is Euclidean Geometry?" :: By Benas Petronis 
+section1 - "Foundations"
+subsection1 - "Points and Lines"
+quote1 - "Geometry begins with relationships." :: "Marila document model"
+link1 - "Marila project" :: "https://example.com/marila"
 
 p2 - "We define integration over space as <integral |0||1|| x^2 dx> which measures area under parabolic curves."
 
@@ -8,6 +12,7 @@ theorem1 - "Pythagorean Theorem" :: "In any right triangle <a^2 + b^2 = c^2> hol
 equation1 - "E = mc^2"
 bullet1 - "Points, lines, and curves share one visual model."
 bullet2 - "The same source can become HTML, LaTeX, or SVG."
+number1 - "First render the source, then publish the result."
 code1 - "let answer = integrate(x => x^2, 0, 1)"
 table1 - "| Quantity | Value |\n| --- | --- |\n| Area | 0.333 |\n| Dimension | 2 |"
 point DiagramOrigin at (0, 0) label "Diagram origin"

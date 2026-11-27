@@ -1,0 +1,7 @@
+file type video:
+[
+plot2d sin(x) over x in [-3.14, 3.14] & animate trace over 3s ease in-out at 1s repeat 2 yoyo
+plot2d data [(-2, 1), (-1, 0), (0, 2), (1, 1)] & animate trace over 2s ease out at 0.5s repeat 2 yoyo
+]
+
+render video

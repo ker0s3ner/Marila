@@ -1,0 +1,5 @@
+file type program:
+[
+  let value = read_json("invalid_json.json")
+  print value
+]

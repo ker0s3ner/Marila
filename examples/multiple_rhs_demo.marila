@@ -1,0 +1,4 @@
+file type program:
+[
+print solve([[3, 1], [1, 2]], [[9, 4], [8, 5]])
+]

@@ -1,0 +1,7 @@
+file type program:
+[
+let record = read_json("escaped_json.json")
+print record["quote"]
+print record["message"]
+print record["path"]
+]

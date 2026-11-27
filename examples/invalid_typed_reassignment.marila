@@ -1,0 +1,5 @@
+file type program:
+[
+let values: vector = [1, 2]
+values = [1, "two"]
+]

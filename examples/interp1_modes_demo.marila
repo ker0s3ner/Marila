@@ -1,0 +1,11 @@
+file type program:
+[
+let linear = interp1([0.5, 1.5], [0, 1, 2], [0, 10, 20])
+let nearest = interp1(0.6, [0, 1, 2], [0, 10, 20], "nearest")
+let previous = interp1(1.5, [0, 1, 2], [0, 10, 20], "previous")
+let next = interp1(1.5, [0, 1, 2], [0, 10, 20], "next")
+assert(linear[0] == 5)
+assert(nearest == 10)
+assert(previous == 10)
+assert(next == 20)
+]

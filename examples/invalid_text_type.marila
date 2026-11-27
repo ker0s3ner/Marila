@@ -1,0 +1,4 @@
+file type program:
+[
+let value = split(7, ",")
+]

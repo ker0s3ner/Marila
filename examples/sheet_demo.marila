@@ -1,0 +1,64 @@
+file type sheet:
+[
+A1 = 12
+B1 = 18
+C1 = A1 + B1
+A2 = 4
+B2 = 6
+C2 = SUM(A1:C1)
+A3 = 4
+B3 = 6
+C3 = 60
+D2 = AVERAGE(A1:B1)
+E1 = IF(C1 > 20, 1, 0)
+F1 = COUNT(A1:C1)
+G1 = MIN(A1:C1)
+H1 = MAX(A1:C1)
+I1 = (A1 + B1) * 2
+J1 = A1 * -2
+K1 = MEDIAN(A1:C1)
+L1 = STDEV(A1:C1)
+M1 = SUM(A1,B1,C1)
+N1 = AVERAGE(A1,B1,C1)
+O1 = ROUND(3.14159)
+P1 = SQRT(16)
+Q1 = POWER(2, 5)
+R1 = SUM(A1:C1, 2)
+S1 = AND(A1 > 0, B1 > 0)
+T1 = OR(A1 < 0, B1 > 0)
+U1 = NOT(A1 < 0)
+V1 = MEDIAN(A1, B1, C1)
+W1 = STDEV(A1, B1, C1)
+X1 = LOG2(8)
+Y1 = ROUND(3.14159, 2)
+Z1 = SUMIF(A1:C1, ">15", A1:C1)
+AA1 = COUNTIF(A1:C1, ">15", A1:C1)
+AB1 = PRODUCT(A1:C1)
+AC1 = SUMPRODUCT(A1:C1, A1:C1)
+AD1 = MOD(17, 5)
+AE1 = COUNTIF(A2:C2, "Marila", A2:C2)
+AF1 = AVERAGEIF(A1:C1, ">15", A1:C1)
+AG1 = SUMIFS(A1:C1, A1:C1, ">15", A3:C3, "<10")
+AH1 = COUNTIFS(A1:C1, ">15", A3:C3, "<10")
+AI1 = AVERAGEIFS(A1:C1, A1:C1, ">15", A3:C3, "<10")
+AJ1 = MINIFS(A1:C1, A1:C1, ">15", A3:C3, "<10")
+AK1 = MAXIFS(A1:C1, A1:C1, ">15", A3:C3, "<10")
+AL1 = IF(AND(A1 > 0, B1 > 0), IF(C1 > 20, 99, 0), 0)
+AM1 = IFERROR(1 / 0, 7)
+AN1 = ISBLANK(Z2)
+AO1 = ISNUMBER(A1)
+AP1 = ISTEXT(A2)
+AQ1 = INDEX(A1:C1, 1, 2)
+AR1 = MATCH(18, A1:C1, 0)
+AS1 = VLOOKUP(12, A1:C1, 2, 0)
+AT1 = HLOOKUP(18, A1:C2, 1, 0)
+F2 = COUNT(A2:C2)
+G2 = COUNTA(A2:C2)
+H2 = COUNTBLANK(A2:E2)
+A2 = "Name"
+B2 = "Marila"
+C2 = "quoted ""cell"""
+chart bar from A1:C1
+]
+
+render sheet

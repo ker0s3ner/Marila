@@ -1,0 +1,12 @@
+file type program:
+[
+  let samples = [4, 1, 7, 2]
+  print median(samples)
+  print variance(samples)
+  print std(samples)
+  print sort(samples)
+  print cumsum(samples)
+  print find([0, 2, false, 4])
+  print argmin(samples)
+  print argmax(samples)
+]

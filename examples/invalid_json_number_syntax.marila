@@ -1,0 +1,5 @@
+file type program:
+[
+write_text("invalid-number.json", "01")
+read_json("invalid-number.json")
+]

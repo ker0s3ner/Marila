@@ -1,0 +1,6 @@
+file type latex:
+[
+quote1 - "A \"quoted\" result" :: "Author\\Name"
+]
+
+render latex

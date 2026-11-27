@@ -1,0 +1,6 @@
+let bases = [1, 2, 3]
+let powers = pow(bases, 2)
+let distances = hypot([3, 5], 4)
+let angles = atan2([0, 1], [1, 0])
+let complex_values = complex([1, 2], [3, 4])
+print [powers, distances, angles, complex_values]

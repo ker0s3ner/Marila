@@ -1,0 +1,7 @@
+file type program:
+[
+let x = -3
+let label = x < 0 ? "negative" : "nonnegative"
+print label
+print (x < 0 ? abs(x) : x) + 1
+]

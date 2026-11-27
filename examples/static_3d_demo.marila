@@ -1,0 +1,9 @@
+file type image:
+[
+plot3d sin(x) * cos(y) over x, y in [-3, 3] & title "Surface" & color "green"
+plot3d data [[0, 1, 0], [1, 2, 1], [0, 1, 0]] & title "Measured" & color "purple"
+sphere at (0, 0, 0) radius 2
+cube at (3, 0, 0) size 2
+]
+
+render image

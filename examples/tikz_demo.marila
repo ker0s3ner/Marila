@@ -1,0 +1,17 @@
+file type tikz:
+[
+point A at (0, 0) label "Origin"
+point B at (3, 0)
+point C at (3, 2)
+line from A to B
+plot2d sin(x) over x in [-3.14, 3.14]
+plot3d sin(x) * cos(y) over x, y in [-2, 2] & title "Surface" & color "blue"
+plot2d data [(-2, 1), (-1, 0), (0, 2), (1, 1), (2, 3)] & title "Samples" & color "lime"
+plot3d data [[0, 1, 0], [1, 2, 1], [0, 1, 0]] & title "Measured" & color "purple"
+plot2d vectorfield (-y, x) over x, y in [-2, 2] & color "cyan"
+line from B to C
+line from C to A
+circle at A radius 0.2
+]
+
+render tikz

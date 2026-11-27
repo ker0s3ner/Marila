@@ -1,0 +1,11 @@
+file type program:
+[
+let design = [[1, 0], [1, 1], [1, 2]]
+let observations = [1, 2, 2.9]
+let coefficients = lstsq(design, observations)
+print rank(design)
+print coefficients
+print pinv([[1, 0], [0, 2]])
+print pinv([[1, 2], [2, 4]])
+print kron([[1, 2]], [[3], [4]])
+]

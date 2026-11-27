@@ -1,0 +1,13 @@
+file type program:
+[
+let value = 2
+if value == 1 {
+  print "one"
+} else if value == 2 {
+  print "two"
+} else if value == 3 {
+  print "three"
+} else {
+  print "other"
+}
+]

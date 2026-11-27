@@ -1,0 +1,5 @@
+file type image:
+[
+plot2d expansion(x) over x in [-1, 1]
+plot2d x + UNKNOWN_NAME over x in [-1, 1]
+]

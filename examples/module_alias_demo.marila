@@ -1,0 +1,6 @@
+file type program:
+[
+import math_utils as math
+print math.square(6)
+print math["scale"]
+]

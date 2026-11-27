@@ -1,0 +1,7 @@
+file type program:
+[
+let shifted = fftshift([0, 1, 2, 3, 4])
+let restored = ifftshift(shifted)
+assert(shifted[0] == 2)
+assert(restored == [0, 1, 2, 3, 4])
+]

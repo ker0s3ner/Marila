@@ -1,0 +1,3 @@
+file type scene:
+[
+plot2d sin(x) over x in [-1, 1]

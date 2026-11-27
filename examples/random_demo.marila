@@ -1,0 +1,9 @@
+file type program:
+[
+seed(42)
+let first = rand(2, 2)
+seed(42)
+let second = rand(2, 2)
+print first == second
+print shape(randn(3))
+]

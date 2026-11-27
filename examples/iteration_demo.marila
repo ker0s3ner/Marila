@@ -1,0 +1,15 @@
+file type program:
+[
+let values = [10, 20]
+let total = 0
+for index, value in values {
+  total = total + index + value
+}
+let record = {"a": 1, "b": 2}
+let labels = ""
+for key, value in record {
+  labels = labels + key
+}
+print total
+print labels
+]

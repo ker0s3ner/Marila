@@ -1,0 +1,10 @@
+file type program:
+[
+let samples = [1, 2, 4, 8]
+let comparison = [2, 4, 8, 16]
+print quantile(samples, 0.75)
+print cov(samples, comparison)
+print corr(samples, comparison)
+print cumprod(samples)
+print diff(samples)
+]

@@ -1,0 +1,7 @@
+file type program:
+[
+let surface = [[0, 1, 2], [1, 2, 3], [2, 3, 4]]
+let gradients = gradient(surface)
+print gradients[0]
+print gradients[1]
+]

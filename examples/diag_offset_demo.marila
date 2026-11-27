@@ -1,0 +1,6 @@
+file type program:
+[
+print diag([1, 2, 3], 1)
+print diag([1, 2], -1)
+print diag([[1, 2, 3], [4, 5, 6]], -1)
+]

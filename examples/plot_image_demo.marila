@@ -1,0 +1,10 @@
+file type image:
+[
+plot2d sin(x) over x in [-6.28, 6.28] & color "red"
+plot2d parametric (cos(t), sin(t)) over t in [0, 6.28]
+plot2d implicit x^2 + y^2 - 1 over x, y in [-2, 2] & color "purple"
+plot2d data [(-2, 1), (-1, 0), (0, 2), (1, 1), (2, 3)] & title "Samples" & color "lime"
+plot2d vectorfield (-y, x) over x, y in [-2, 2] & color "cyan"
+]
+
+render image

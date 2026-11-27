@@ -1,0 +1,6 @@
+file type video:
+[
+wait -1s
+]
+
+render video

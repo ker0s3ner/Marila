@@ -1,0 +1,10 @@
+file type program:
+[
+let A = [[4, 7], [2, 6]]
+print det(A)
+print inverse(A)
+print solve([[2, 1], [1, 3]], [5, 6])
+print trace(A)
+print diag([4, 6])
+print outer([1, 2], [3, 4])
+]

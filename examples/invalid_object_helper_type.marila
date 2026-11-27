@@ -1,0 +1,4 @@
+file type program:
+[
+let value = keys([1, 2])
+]

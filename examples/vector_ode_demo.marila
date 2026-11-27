@@ -1,0 +1,6 @@
+file type program:
+[
+let trajectory = ode_rk4((t, state) => [state[1], -state[0]], [1, 0], 0, 1, 4)
+assert(len(trajectory) == 5)
+assert(trajectory[0][1][0] == 1)
+]

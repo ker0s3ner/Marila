@@ -1,0 +1,15 @@
+file type program:
+[
+let z = complex(1, 2)
+let product = z * z
+print z
+print product
+print real(z)
+print imag(z)
+print abs(z)
+print sin(z)
+print conj(z)
+write_json("/tmp/marila-complex.json", z)
+let restored = read_json("/tmp/marila-complex.json")
+print restored
+]

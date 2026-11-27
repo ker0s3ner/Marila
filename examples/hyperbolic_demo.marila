@@ -1,0 +1,11 @@
+file type program:
+[
+  assert(abs(sinh(1) - 1.1752011936438014) < 1e-12)
+  assert(abs(cosh(1) - 1.5430806348152437) < 1e-12)
+  assert(abs(tanh(1) - 0.7615941559557649) < 1e-12)
+  assert(abs(asinh(1) - 0.881373587019543) < 1e-12)
+  assert(abs(acosh(1) - 0) < 1e-12)
+  assert(abs(atanh(0.5) - 0.5493061443340548) < 1e-12)
+  let values = sinh([0, 1, 2])
+  assert(len(values) == 3)
+]

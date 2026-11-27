@@ -1,0 +1,5 @@
+file type program:
+[
+print shape(zeros(2))
+print shape(ones(2, 3))
+]

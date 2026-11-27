@@ -1,0 +1,5 @@
+file type program:
+[
+let record = read_json("unicode_json.json")
+print record["greeting"]
+]

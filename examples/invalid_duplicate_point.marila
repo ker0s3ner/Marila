@@ -1,0 +1,6 @@
+file type scene:
+[
+point A at (0, 0)
+point A at (1, 1)
+line from A to A
+]

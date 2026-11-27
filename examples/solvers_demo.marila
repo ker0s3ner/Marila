@@ -1,0 +1,10 @@
+file type program:
+[
+let square_error = x => x * x - 2
+print root(square_error, 1)
+let growth = (t, y) => y
+let trajectory = ode_euler(growth, 1, 0, 1, 4)
+print trajectory[4][1]
+let accurate = ode_rk4(growth, 1, 0, 1, 4)
+print accurate[4][1]
+]

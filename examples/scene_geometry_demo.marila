@@ -1,0 +1,18 @@
+file type scene:
+[
+point A at (-60, 0) label "A"
+point B at (0, 60) label "B"
+point C at (60, 0) label "C"
+line from A to B
+triangle ABC with color "amber"
+circle at A radius 12 & dash
+sphere at (0, 0, 0) radius 2
+cube at (3, 0, 0) size 2
+plot3d sin(x) * cos(y) over x, y in [-3, 3]
+plot2d data [(-2, 1), (-1, 0), (0, 2), (1, 1), (2, 3)] & title "Samples" & color "lime"
+plot3d data [[0, 1, 0], [1, 2, 1], [0, 1, 0]] & title "Measured" & color "purple"
+plot2d vectorfield (-y, x) over x, y in [-3, 3] & title "Rotation field" & color "cyan"
+plot2d sin(x) over x in [-3, 3] & animate trace over 2s ease out at 0.5s repeat 2 yoyo
+]
+
+render scene

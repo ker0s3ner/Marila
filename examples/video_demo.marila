@@ -1,6 +1,6 @@
 file type video:
 [ 
- square(size 30) morphs to circle(size 10) over 1s ease out
+ square(size 30) morphs to circle(size 10) over 1s ease out at 0.5s
 ]
 
 render video

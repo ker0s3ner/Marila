@@ -1,0 +1,7 @@
+file type image:
+[
+/* point Hidden at (0, 0) */
+point A at (1, 1) // inline comments are ignored
+line from A to A
+]
+render image

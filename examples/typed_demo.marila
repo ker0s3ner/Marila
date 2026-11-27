@@ -1,0 +1,10 @@
+file type program:
+[
+  let count: number = 3
+  let label: string = "samples"
+  let enabled: bool = true
+  let values: array = [1, 2, 3]
+  print label
+  print count + len(values)
+  print enabled
+]

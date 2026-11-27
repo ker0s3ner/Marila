@@ -1,0 +1,7 @@
+file type program:
+[
+let uniform = cumtrapz([0, 1, 2], 1)
+let sampled = cumtrapz([0, 1, 4], [0, 1, 2])
+assert(uniform[2] == 2)
+assert(sampled[2] == 3)
+]

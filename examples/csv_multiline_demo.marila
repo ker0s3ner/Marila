@@ -1,0 +1,5 @@
+file type program:
+[
+let rows = read_csv("multiline.csv")
+print rows[1][1]
+]

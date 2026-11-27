@@ -1,0 +1,7 @@
+file type program:
+[
+/* A multi-line comment
+   can contain ] } and continue safely. */
+let value = 6
+print value
+]

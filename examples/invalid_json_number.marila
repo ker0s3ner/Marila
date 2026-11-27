@@ -1,0 +1,4 @@
+file type program:
+[
+write_json("invalid-output.json", 1 / 0)
+]

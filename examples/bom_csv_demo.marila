@@ -1,0 +1,5 @@
+file type program:
+[
+let rows = read_csv("bom.csv")
+assert(rows[0][0] == "name")
+]

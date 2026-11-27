@@ -1,0 +1,4 @@
+file type program:
+[
+  let count: number = "three"
+]

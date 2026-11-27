@@ -1,0 +1,4 @@
+file type video:
+[
+plot2d clamp(asinh(x), -1, 1) over x in [-3.14, 3.14] & animate trace over 1s
+]

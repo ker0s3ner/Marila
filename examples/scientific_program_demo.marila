@@ -1,0 +1,4 @@
+let avogadro = 6.022e23
+let tiny = 1.5e-4
+let text = "line\n\u03bb"
+print [avogadro, tiny, text]

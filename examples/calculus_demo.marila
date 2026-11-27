@@ -1,0 +1,7 @@
+file type program:
+[
+let square = x => x ^ 2
+print differentiate(square, 3)
+print integrate(square, 0, 1, 100)
+print interp1(2.5, [0, 2, 4], [0, 4, 8])
+]

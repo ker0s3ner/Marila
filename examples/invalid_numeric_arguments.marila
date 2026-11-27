@@ -1,0 +1,4 @@
+file type program:
+[
+let samples = rand(2.5)
+]

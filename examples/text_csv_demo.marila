@@ -1,0 +1,6 @@
+file type program:
+[
+  let records = read_csv("text_data.csv")
+  print records
+  write_csv("/tmp/marila-text-roundtrip.csv", records)
+]

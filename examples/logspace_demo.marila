@@ -1,0 +1,5 @@
+file type program:
+[
+let values = logspace(0, 2, 3)
+assert(values == [1, 10, 100])
+]

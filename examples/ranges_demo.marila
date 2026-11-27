@@ -1,0 +1,9 @@
+file type program:
+[
+let values = 1:2:5
+print values
+print range(0, 1, 0.25)
+let matrix = [[1, 2], [3, 4]]
+matrix[0, 1] = 8
+print matrix
+]

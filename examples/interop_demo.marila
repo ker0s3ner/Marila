@@ -1,0 +1,10 @@
+file type program:
+[
+let samples = read_csv("data.csv")
+let scaled = samples .* 2
+write_csv("/tmp/marila-scaled.csv", scaled)
+write_json("/tmp/marila-roundtrip.json", scaled)
+let restored = read_json("/tmp/marila-roundtrip.json")
+print shape(samples)
+print shape(restored)
+]

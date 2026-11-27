@@ -1,0 +1,7 @@
+file type program:
+[
+let result = histogram([0, 1, 2, 3], 2)
+assert(result.counts == [2, 2])
+assert(result.edges == [0, 1.5, 3])
+print result.counts
+]

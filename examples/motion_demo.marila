@@ -1,0 +1,9 @@
+file type video:
+[
+point A at (-3, -1) moves to (3, 1) over 2s ease in-out at 1s repeat 2 yoyo
+point A at (3, 1) moves to (0, 3) over 1s ease out at 5s
+fade in A over 1s ease in at 0s
+wait 0.5s at 3s
+]
+
+render video

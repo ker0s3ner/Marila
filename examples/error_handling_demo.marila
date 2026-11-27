@@ -1,0 +1,14 @@
+file type program:
+[
+try {
+  throw "recoverable failure"
+} catch (message) {
+  print message
+}
+try {
+  let value = number("not a number")
+  print value
+} catch error {
+  print "conversion failed: " + error
+}
+]

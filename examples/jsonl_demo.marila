@@ -1,0 +1,7 @@
+file type program:
+[
+let records = [{name: "Ada", score: 10}, {name: "Grace", score: 12}]
+write_jsonl("/tmp/marila-records.jsonl", records)
+let restored = read_jsonl("/tmp/marila-records.jsonl")
+print restored[1]["score"]
+]

@@ -1,0 +1,9 @@
+file type program:
+[
+  let metadata = read_json("metadata.json")
+  metadata["name"] = "Marila 2"
+  metadata["stats"]["count"] = 4
+  print metadata["name"]
+  print metadata["stats"]["count"]
+  write_json("/tmp/marila-object-mutated.json", metadata)
+]

@@ -1,0 +1,7 @@
+file type tikz:
+[
+point A at (0, 0) label "Origin"
+point B at (3, 0) label "Base"
+line from A to B
+plot2d sin(x) over x in [-3.14, 3.14] & title "Sine" & color "red"
+]

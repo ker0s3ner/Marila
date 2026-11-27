@@ -1,0 +1,7 @@
+file type program:
+[
+assert(type_of(3) == "number")
+assert(typeof([1, 2]) == "vector")
+assert(type_of([[1, 2], [3, 4]]) == "matrix")
+assert(type_of({name: "Marila"}) == "object")
+]

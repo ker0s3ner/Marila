@@ -1,0 +1,9 @@
+file type program:
+[
+write_tsv("/tmp/marila_roundtrip.tsv", [["name", "value"], ["alpha", 1.5], ["beta", 2.5]])
+write_text("/tmp/marila_note.txt", "Marila\ninterop")
+let rows = read_tsv("/tmp/marila_roundtrip.tsv")
+let note = read_text("/tmp/marila_note.txt")
+print rows
+print note
+]

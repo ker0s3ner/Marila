@@ -1,0 +1,7 @@
+file type program:
+[
+let safe_and = false && number("invalid")
+let safe_or = true || number("invalid")
+print safe_and
+print safe_or
+]

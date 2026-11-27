@@ -1,0 +1,5 @@
+file type program:
+[
+write_text("trailing-comma.json", "{\"value\": 1,}")
+read_json("trailing-comma.json")
+]

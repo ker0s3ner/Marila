@@ -1,0 +1,11 @@
+file type program:
+[
+let x = 0:1:2
+let y = 0:1:1
+let grids = meshgrid(x, y)
+let slopes = gradient([0, 1, 4, 9], 1)
+let area = trapz([0, 1, 2, 3], 1)
+print shape(grids[0])
+print slopes
+print area
+]

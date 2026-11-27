@@ -1,0 +1,7 @@
+file type scene:
+[
+plot2d sin(x) over x in [-2*pi, 2*pi] y in [-1.5, 1.5] title "Sine wave"
+plot2d parametric (cos(t), sin(t)) over t in [0, 2*pi] title "Unit circle"
+plot3d sin(x) * cos(y) over x, y in [-3, 3] title "Ripple surface"
+plot4d parametric (cos(t), sin(t), cos(2*t), sin(2*t)) over t in [0, 2*pi] title "4D Lissajous curve"
+]

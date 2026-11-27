@@ -1,0 +1,7 @@
+file type program:
+[
+let rows = vstack([1, 2], [3, 4])
+let columns = hstack([[1], [2]], [[3], [4]])
+assert(rows[1][0] == 3)
+assert(columns[0][1] == 3)
+]

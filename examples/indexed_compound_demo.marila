@@ -1,0 +1,7 @@
+file type program:
+[
+let values = [1, 2]
+values[0] += 4
+values[1] *= 3
+print values
+]

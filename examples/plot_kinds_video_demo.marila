@@ -1,0 +1,9 @@
+file type video:
+[
+plot2d parametric (cos(t), sin(t)) over t in [0, 6.28]
+plot2d vectorfield (-y, x) over x, y in [-3, 3]
+plot2d implicit x^2 + y^2 - 1 over x, y in [-2, 2]
+plot4d parametric (cos(t), sin(t), cos(2*t), sin(2*t)) over t in [0, 6.28] & animate trace over 2s ease in-out at 0.25s repeat 2 yoyo
+]
+
+render video

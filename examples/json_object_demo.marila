@@ -1,0 +1,10 @@
+file type program:
+[
+  let metadata = read_json("metadata.json")
+  print metadata["name"]
+  print metadata["stats"]["count"]
+  print metadata["stats"]["active"]
+  print keys(metadata)
+  print has_key(metadata, "stats")
+  write_json("/tmp/marila-object-roundtrip.json", metadata)
+]

@@ -1,0 +1,13 @@
+file type program:
+[
+  let record = {
+    name: "Marila",
+    version: 1,
+    tags: ["math", "graphics"],
+    config: {debug: true}
+  }
+  print record["name"]
+  print record["tags"][1]
+  print record["config"]["debug"]
+  write_json("/tmp/marila-literal.json", record)
+]

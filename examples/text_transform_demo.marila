@@ -1,0 +1,14 @@
+file type program:
+[
+let text = trim("  Marila  ")
+let syntax_words = ["if", "true", ")"]
+let operator_words = ["a", "+", "b"]
+assert(text == "Marila")
+assert(syntax_words[0] == "if")
+assert(syntax_words[1] == "true")
+assert(syntax_words[2] == ")")
+assert(operator_words[1] == "+")
+assert(replace("a-b-c", "-", ":") == "a:b:c")
+assert(starts_with(text, "Mar"))
+assert(ends_with(text, "ila"))
+]

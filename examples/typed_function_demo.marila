@@ -1,0 +1,7 @@
+file type program:
+[
+function scale(value: number, factor: number): number {
+return value * factor
+}
+print scale(5, 2)
+]

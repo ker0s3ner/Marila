@@ -1,0 +1,4 @@
+file type program:
+[
+print eigvals([[0, -1], [1, 0]])
+]

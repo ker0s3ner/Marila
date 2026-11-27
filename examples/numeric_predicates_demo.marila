@@ -1,0 +1,5 @@
+file type program:
+[
+print isclose([1, 2], [1.0000000001, 2])
+print clamp([-2, 0.5, 4], 0, 1)
+]

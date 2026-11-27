@@ -1,0 +1,8 @@
+file type scene:
+[
+point E at (1e-3, -2.5e-1) label "scientific"
+sphere at (1e-2, 0, 0) radius 5e-1
+cube at (0, 2e-1, 0) size 1e0
+]
+
+render scene

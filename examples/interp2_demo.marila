@@ -1,0 +1,8 @@
+file type program:
+[
+let grid = [[0, 1], [2, 3]]
+assert(interp2(0.5, 0.5, [0, 1], [0, 1], grid) == 1.5)
+let samples = interp2([0, 1], 0.5, [0, 1], [0, 1], grid)
+assert(samples[0] == 1)
+assert(samples[1] == 2)
+]

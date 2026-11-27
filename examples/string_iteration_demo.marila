@@ -1,0 +1,8 @@
+file type program:
+[
+let result = ""
+for character in "Marila" {
+  result = result + character
+}
+print result
+]

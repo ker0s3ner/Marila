@@ -1,0 +1,7 @@
+file type program:
+[
+let values = [1, 1 / 0, 3]
+print isfinite(values)
+print isinf(values)
+print isnan([sqrt(-1)])
+]

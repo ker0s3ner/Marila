@@ -1,0 +1,7 @@
+file type program:
+[
+let vector_value: vector = [1, 2, 3]
+let matrix_value: matrix = [[1, 2], [3, 4]]
+assert(len(vector_value) == 3)
+assert(matrix_value[1][0] == 3)
+]

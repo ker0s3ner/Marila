@@ -1,0 +1,8 @@
+file type program:
+[
+def square(value) {
+  return value * value
+}
+
+let scale = 3
+]

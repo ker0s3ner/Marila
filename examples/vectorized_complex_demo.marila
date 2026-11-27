@@ -1,0 +1,2 @@
+let values = complex([1, 0], [0, 1])
+print [real(values), imag(values), conj(values), arg(values)]

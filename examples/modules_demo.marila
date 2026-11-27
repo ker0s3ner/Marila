@@ -1,0 +1,6 @@
+file type program:
+[
+import math_utils
+print square(5)
+print scale
+]

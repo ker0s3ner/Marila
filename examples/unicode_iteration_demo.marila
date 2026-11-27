@@ -1,0 +1,8 @@
+file type program:
+[
+let result = ""
+for character in "Aλ中" {
+  result = result + character
+}
+print result
+]

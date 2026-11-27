@@ -1,0 +1,5 @@
+file type program:
+[
+let values = polyval([1, 0, -1], [-1, 0, 1])
+assert(values == [0, -1, 0])
+]

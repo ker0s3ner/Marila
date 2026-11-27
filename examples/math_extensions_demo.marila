@@ -1,0 +1,7 @@
+file type program:
+[
+print atan(1)
+print log2(8)
+print pow(2, 5)
+print sign(-3)
+]

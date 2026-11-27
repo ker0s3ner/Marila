@@ -1,0 +1,7 @@
+file type program:
+[
+let decomposition = qr([[1, 1], [1, -1], [1, 0]])
+print decomposition["Q"]
+print decomposition["R"]
+print cholesky([[4, 2], [2, 2]])
+]

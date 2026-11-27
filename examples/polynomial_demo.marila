@@ -1,0 +1,8 @@
+file type program:
+[
+let x = [0, 1, 2, 3]
+let y = [1, 3, 5, 7]
+let coefficients = polyfit(x, y, 1)
+print coefficients
+print polyval(coefficients, 4)
+]

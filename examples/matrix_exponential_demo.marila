@@ -1,0 +1,6 @@
+file type program:
+[
+let result = expm([[0, 1], [-1, 0]])
+assert(abs(result[0][0] - cos(1)) < 1e-6)
+assert(abs(result[0][1] - sin(1)) < 1e-6)
+]

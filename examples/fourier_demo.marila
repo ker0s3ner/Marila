@@ -1,0 +1,7 @@
+file type program:
+[
+let signal = [1, 0, 0, 0]
+let spectrum = fft(signal)
+print spectrum["real"]
+print ifft(spectrum)
+]

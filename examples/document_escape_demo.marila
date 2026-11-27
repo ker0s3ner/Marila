@@ -1,0 +1,6 @@
+file type document:
+[
+quote1 - "A \"quoted\" result" :: "Author\\Name"
+]
+
+render document

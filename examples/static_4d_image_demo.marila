@@ -1,0 +1,6 @@
+file type image:
+[
+plot4d parametric (cos(t), sin(t), cos(2*t), sin(2*t)) over t in [0, 6.28] title "Projected 4D curve"
+]
+
+render image

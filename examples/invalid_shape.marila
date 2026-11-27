@@ -1,0 +1,5 @@
+file type program:
+[
+let values = [[1, 2], [3]]
+print shape(values)
+]

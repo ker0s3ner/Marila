@@ -1,0 +1,14 @@
+file type program:
+[
+  let values = [1, 2, 3, 4, 5]
+  let doubled = map(x => x * 2, values)
+  let even = filter(x => x % 2 == 0, values)
+  let total = reduce((a, b) => a + b, values, 0)
+  let pairs = zip(values, doubled)
+  print doubled
+  print even
+  print total
+  print all([true, 1, 2])
+  print any([false, 0, 3])
+  print pairs
+]

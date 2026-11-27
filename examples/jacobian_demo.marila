@@ -1,0 +1,8 @@
+file type program:
+[
+let system = p => [p[0] * p[0], sin(p[1])]
+print jacobian(system, [2, 0])
+print eigvals([[2, 1], [1, 2]])
+print eig([[2, 1], [1, 2]])["values"]
+print svd([[3, 0], [0, 2]])["S"]
+]

@@ -1,0 +1,8 @@
+file type video:
+[
+plot3d sin(x) * cos(y) over x, y in [-3.14, 3.14] & animate trace over 2s ease in-out at 0.5s repeat 2 yoyo
+sphere at (0, 0, 0) radius 0.8
+cube at (2, 0, 0) size 1
+]
+
+render video

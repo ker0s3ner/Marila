@@ -1,0 +1,7 @@
+file type image:
+[
+plot2d data (1e-3, 2.5e-1) (2e-3, 5e-1) title "scientific samples"
+plot2d 1e-3 * x over x in [-1, 1] title "scientific expression"
+]
+
+render image

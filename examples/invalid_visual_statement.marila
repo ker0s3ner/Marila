@@ -1,0 +1,7 @@
+file type scene:
+[
+point A at (0, 0)
+line from A to Missing
+wat doodle this is not Marila
+]
+render scene

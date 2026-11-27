@@ -1,0 +1,6 @@
+file type image:
+[
+point A at (0, 0)
+fade in A
+square(size 1) morphs to circle(size 2)
+]

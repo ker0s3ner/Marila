@@ -1,0 +1,8 @@
+file type program:
+[
+if none {
+    print "bad"
+} else {
+    print "none is false"
+}
+]
